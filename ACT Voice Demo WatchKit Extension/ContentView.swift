@@ -8,7 +8,9 @@
 import SwiftUI
 import AVFoundation
 
+
 struct ContentView: View {
+    @State private var text: String = ""
     var body: some View {
         VStack {
             Text("Start a Trip")
@@ -16,14 +18,16 @@ struct ContentView: View {
                 .fontWeight(.thin)
                 .padding()
                 .onTapGesture {
-                let text = "Hey Mom and Dad! I am making an apple watch talk! This is cool."
+                let text = "Tap the microphone to say where you want to go."
                 
                 let utterance = AVSpeechUtterance(string: text)
                 let synthesizer = AVSpeechSynthesizer()
                 synthesizer.speak(utterance)
                 }
-        }.onAppear {
-
+            TextField(
+                    "Sample Text",
+                     text: $text
+                )
         }
     }
 }

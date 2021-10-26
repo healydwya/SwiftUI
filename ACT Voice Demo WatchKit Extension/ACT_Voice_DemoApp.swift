@@ -6,14 +6,21 @@
 //
 
 import SwiftUI
+import Intents
 
 @main
 struct ACT_Voice_DemoApp: App {
+    @Environment(\.scenePhase) private var scenePhase
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
             }
+        }
+        .onChange(of: scenePhase) { phase in
+                        INPreferences.requestSiriAuthorization({status in
+                        // Handle errors here
+                    })
         }
     }
 }
